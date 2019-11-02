@@ -67,9 +67,10 @@ edit setenv.sh
 ./workshopper installCatalogSources
 ./workshopper installServicemesh
 ./workshopper createServicemesh
+./workshopper installPipelines
+
 oc api-resources --api-group='networking.istio.io'
 # ./workshopper createUsers
-./workshopper installPipelines
 
 
 # Add kind: ServiceMeshMemberRoll via the Operator UI into namespace istio-system
