@@ -156,15 +156,20 @@ https://github.com/burrsutter/blue-green-canary/blob/master/src/main/java/com/bu
 
 # Use list_containers.sh 
 
-# Change APIResource.java for Bonjour/green
+# Change APIResource.java & HelloResourceTest for Bonjour/green
 ./5_start_pipeline_green.sh
 
-# Change APIResource.java for Hola/canary
+# Change APIResource.java & HelloResourceTest for Hola/canary
 ./5_start_pipeline_canary.sh
 
 ./6_deploy_gateway.sh
 
 watch kubectl get pods
+
+To get the URL for end-users UI
+kubectl get route istio-ingressgateway -n istio-system --output 'jsonpath={.status.ingress[].host}')
+
+
 
 ./poll_bgc_ocp4_gateway.sh
 
