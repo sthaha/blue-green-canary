@@ -134,8 +134,6 @@ bgc-image-green    image   url: image-registry.openshift-image-registry.svc:5000
 oc apply -f src/main/tekton/task-yq-deploy.yml
 # mvn & buildah
 oc apply -f src/main/tekton/task-mvn-buildah.yml
-oc apply -f src/main/tekton/task-mvn-buildah.yml
-
 
 tkn task ls
 NAME               AGE
