@@ -58,23 +58,49 @@ git clone https://github.com/redhat-developer-demos/guru-night
 
 cd guru-night
 
-cp setenv.example setenv.sh
+cp setenv.example setEnv-aws.sh
 
 mkdir work
 
-edit setenv.sh
+export CLOUD_PROFILE=aws
+
+edit setEnv-aws.sh
 
 ./workshopper installCatalogSources
 ./workshopper installServicemesh
 ./workshopper createServicemesh
 ./workshopper installPipelines
 
-oc api-resources --api-group='networking.istio.io'
-# ./workshopper createUsers
+kubectl api-resources --api-group='networking.istio.io'
 
+kubectl get pods -n istio-system
+NAME                                      READY   STATUS    RESTARTS   AGE
+grafana-b67df64b6-fzqzb                   2/2     Running   0          4m48s
+istio-citadel-79979464d-g2h6p             1/1     Running   0          9m5s
+istio-egressgateway-7d897695c4-bn6tz      1/1     Running   0          5m32s
+istio-galley-6bb46858c5-5mrvq             1/1     Running   0          7m37s
+istio-ingressgateway-8465bbf788-2vhcv     1/1     Running   0          5m31s
+istio-pilot-7cb87486f-8rlkx               2/2     Running   0          6m22s
+istio-policy-5fc74b8697-7gt2q             2/2     Running   0          7m11s
+istio-sidecar-injector-65cd4c8c6f-j27wc   1/1     Running   0          5m18s
+istio-telemetry-78644647c9-qr8k7          2/2     Running   0          7m10s
+jaeger-57776787bc-sstwj                   2/2     Running   0          7m41s
+kiali-6d6f9cf658-299v5                    1/1     Running   0          3m38s
+prometheus-b8bdc6b77-wgp6d                2/2     Running   0          8m44s
+
+kubectl get pods -n openshift-pipelines
+NAME                                           READY   STATUS    RESTARTS   AGE
+tekton-pipelines-controller-7b6648dc8d-kfnqt   1/1     Running   0          8m40s
+tekton-pipelines-webhook-65856dff6c-x4mbj      1/1     Running   0          8m40s
+tekton-triggers-controller-6bcdd9d5df-m8lnr    1/1     Running   0          8m14s
+tekton-triggers-webhook-5cf995778d-tqrnk       1/1     Running   0          8m11s
+
+
+oc new-project one
 
 # Add kind: ServiceMeshMemberRoll via the Operator UI into namespace istio-system
-
+one
+https://screencast.com/t/SzOC6IhHbhH
 
 ----
 
@@ -87,8 +113,6 @@ oc get pods -n openshift-pipelines
 oc new-project rhd-workshop-infra
 oc new-app sonatype/nexus -n rhd-workshop-infra
 oc get pods -n rhd-workshop-infra
-
-oc new-project one
 
 git clone https://github.com/burrsutter/blue-green-canary
 
