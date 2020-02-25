@@ -4,49 +4,6 @@ With Tekton pipeline builds
 
 With Istio 
 
-== Minikube (Incomplete)
-----
-curl -L https://github.com/istio/istio/releases/download/1.3.0/istio-1.3.0-osx.tar.gz | tar xz
-
-cd istio-1.3.0
-
-for i in install/kubernetes/helm/istio-init/files/crd*yaml; do kubectl apply -f $i; done
-
-kubectl create -f install/kubernetes/istio-demo.yaml
-
-kubectl create namespace demo
-
-kubectl label namespace demo istio-injection=enabled
-
-kubens demo
-
-./4_service.sh
-
-./5_deploy_blue.sh
-
-./5_deploy_green.sh
-
-./5_deploy_canary.sh
-
-./6_deploy_gateway.sh
-
-watch kubectl get pods
-
-./poll_bgc_minikube_gateway.sh
-
-# Should be alternating across blue/green/canary
-
-kubectl create -f src/main/istio/Destination_rule_blue_green.yml
-
-kubectl replace -f src/main/istio/Virtual_service_blue.yml
-----
-
-=== Tekton on Minikube
-
-Incomplete
-----
-
-----
 
 == OpenShift
 

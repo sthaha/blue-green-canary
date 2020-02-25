@@ -65,7 +65,12 @@
             document.getElementById("hello").textContent = message.hello;
           }
        };
-       polledURL = "http://" + location.host + "/api";
+       // polledURL = "http://" + location.host + "/api";
+       console.log(window.location.protocol);
+       console.log(window.location.host);
+       
+       polledURL = window.location.protocol + "//" + window.location.host + "/api";
+
        console.log("BURR: " + polledURL);
        xhttp.open("GET", polledURL, true);
        xhttp.send();
