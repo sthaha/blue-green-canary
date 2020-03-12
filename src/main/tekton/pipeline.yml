@@ -13,12 +13,12 @@ spec:
   - name: contextDir
     description: the context directory of the Java sources
     default: .
-  resources: 
+  resources:
   - name: appSource
     type: git
   - name: appImage
     type: image
-  tasks: 
+  tasks:
    - name: build-java-app
      taskRef:
        name: mvn-buildah
@@ -28,7 +28,7 @@ spec:
       - name: mavenMirrorUrl
         value: "$(params.mavenMirrorUrl)"
       - name: dockerFile
-        value: src/main/docker/Dockerfile.jvm  
+        value: src/main/docker/Dockerfile.jvm
      resources:
       inputs:
         - name: source
@@ -53,8 +53,8 @@ spec:
       - name: ARGS
         value:
         - "w"
-        - "-i"        
+        - "-i"
         - "$(params.kubernetesResourceFile)"
         - "spec.template.spec.containers[0].image"
         - "$(inputs.resources.image.url)"
-   
+

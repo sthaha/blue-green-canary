@@ -16,7 +16,7 @@ spec:
     - name: image
       type: image
     - name: source
-      type: git      
+      type: git
   steps:
   - name: before-yq-echo
     image: fedora
@@ -36,5 +36,5 @@ spec:
     command: ['kubectl']
     args:
     - apply
-    - -f 
+    - -f
     - $(inputs.params.kubernetesResourceFile)

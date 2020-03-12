@@ -4,7 +4,7 @@ metadata:
   name: bgc-git-source
 spec:
   type: git
-  params: 
+  params:
   - name: url
     value: https://github.com/burrsutter/blue-green-canary
   - name: revision
@@ -16,11 +16,11 @@ metadata:
   name: bgc-image-blue
 spec:
   type: image
-  params: 
+  params:
   - name: url
     #value: "dev.local/rhdevelopers/stream-greeter"
     # if you are on OpenShift uncomment the line below
-    value: "image-registry.openshift-image-registry.svc:5000/one/blue-green-canary:blue"
+    value: "image-registry.openshift-image-registry.svc:5000/sthaha-tekton/blue-green-canary:blue"
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
@@ -28,11 +28,11 @@ metadata:
   name: bgc-image-green
 spec:
   type: image
-  params: 
+  params:
   - name: url
     #value: "dev.local/rhdevelopers/stream-greeter"
     # if you are on OpenShift uncomment the line below
-    value: "image-registry.openshift-image-registry.svc:5000/one/blue-green-canary:green"
+    value: "image-registry.openshift-image-registry.svc:5000/sthaha-tekton/blue-green-canary:green"
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
@@ -40,8 +40,8 @@ metadata:
   name: bgc-image-canary
 spec:
   type: image
-  params: 
+  params:
   - name: url
     #value: "dev.local/rhdevelopers/stream-greeter"
     # if you are on OpenShift uncomment the line below
-    value: "image-registry.openshift-image-registry.svc:5000/one/blue-green-canary:canary"
+    value: "image-registry.openshift-image-registry.svc:5000/sthaha-tekton/blue-green-canary:canary"
